@@ -1,0 +1,43 @@
+{
+  "name": "react-session-storage",
+  "version": "1.0.0",
+  "description": "Store data throughout the session and move between components.",
+  "main": "index.js",
+  "scripts": {
+    "test": "react-scripts test",
+    "build": "./node_modules/.bin/babel src --out-file index.js",
+    "minify": "./node_modules/.bin/babel --minified src --out-file index.min.js "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/barisates/react-session-storage.git"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "react-component",
+    "localstorage",
+    "session",
+    "session-storage"
+  ],
+  "author": {
+    "name": "Barış Ateş",
+    "email": "info@barisates.com",
+    "url": "http://barisates.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/barisates/react-session-storage/issues"
+  },
+  "homepage": "https://github.com/barisates/react-session-storage#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/preset-react": "^7.0.0",
+    "react-scripts": "3.1.2"
+  },
+  "dependencies": {
+    "react": "^16.9.0"
+  }
+}

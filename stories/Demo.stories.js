@@ -6,7 +6,7 @@ import DecreaseButton from './components/DecreaseButton';
 import './css/bootstrap.min.css';
 import './css/demo.css';
 
-// Session.config(false, 1);
+Session.config(false, 1);
 
 export default {
   title: 'Demo',

@@ -13,17 +13,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 var Config = {
   useBrowserStorage: false,
-  timeout: 0,
-  recentAccess: new Date(),
-  expired: function expired() {
-    var expireMinute = Math.round((new Date() - Config.recentAccess) % 86400000 % 3600000 / 60000);
+  timeout: 0
+};
+var Helper = {
+  access: new Date(),
+  expired: function expired(storage) {
+    var expireMinute = Math.round((new Date() - Helper.access) / 60000);
 
     if (expireMinute > Config.timeout && Config.timeout !== 0) {
-      console.warn("Session expired!");
-      return true;
+      console.warn("Session expired!", storage);
+      storage.clear();
     }
 
-    return false;
+    Helper.access = new Date();
   }
 };
 
@@ -52,12 +54,12 @@ var Storage = function Storage() {
       return _SessionStorage[key];
     };
 
-    _SessionStorage.__proto__.clear = function () {
-      _SessionStorage = {};
-    };
-
     _SessionStorage.__proto__.removeItem = function (key) {
       delete _SessionStorage[key];
+    };
+
+    _SessionStorage.__proto__.clear = function () {
+      _SessionStorage = {};
     };
 
     return _SessionStorage;
@@ -97,6 +99,7 @@ function () {
     value: function items() {
       var _this = this;
 
+      Helper.expired(this.Storage);
       var sessionData = {};
       Object.keys(this.Storage).forEach(function (item) {
         sessionData[item] = _this.Storage.getItem(item);
@@ -116,7 +119,7 @@ function () {
   }, {
     key: "set",
     value: function set(key, value) {
-      Config.recentAccess = new Date();
+      Helper.expired(this.Storage);
       this.Storage.setItem(key, value);
       var data = this.items();
       this.Callback.forEach(function (func) {
@@ -131,7 +134,7 @@ function () {
   }, {
     key: "get",
     value: function get(key) {
-      if (Config.expired()) this.Storage.clear();
+      Helper.expired(this.Storage);
       return this.Storage.getItem(key);
     }
     /**

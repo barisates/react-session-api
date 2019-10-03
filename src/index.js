@@ -1,15 +1,19 @@
 const Config = {
     useBrowserStorage: false,
-    timeout: 0,
-    recentAccess: new Date(),
-    expired: () => {
-        const expireMinute = Math.round((((new Date() - Config.recentAccess) % 86400000) % 3600000) / 60000);
+    timeout: 0
+}
+const Helper = {
+    access: new Date(),
+    expired: (storage) => {
+
+        const expireMinute = Math.round(((new Date() - Helper.access) / 60000));
 
         if (expireMinute > Config.timeout && Config.timeout !== 0) {
-            console.warn("Session expired!");
-            return true;
+            console.warn("Session expired!", storage);
+            storage.clear();
         }
-        return false;
+
+        Helper.access = new Date();
     }
 }
 
@@ -40,12 +44,12 @@ const Storage = () => {
             return SessionStorage[key];
         }
 
-        SessionStorage.__proto__.clear = () => {
-            SessionStorage = {};
-        }
-
         SessionStorage.__proto__.removeItem = (key) => {
             delete SessionStorage[key];
+        }
+
+        SessionStorage.__proto__.clear = () => {
+            SessionStorage = {};
         }
 
         return SessionStorage;
@@ -71,6 +75,8 @@ class SessionStorage {
     * @return {Array<Object>} Return session items.
     */
     items() {
+        Helper.expired(this.Storage);
+
         let sessionData = {};
 
         Object.keys(this.Storage).forEach(item => { sessionData[item] = this.Storage.getItem(item) });
@@ -85,7 +91,7 @@ class SessionStorage {
      * @param {Object|string} value Session item value. If you are using browser storage, it can only take {:string}.
      */
     set(key, value) {
-        Config.recentAccess = new Date();
+        Helper.expired(this.Storage);
 
         this.Storage.setItem(key, value);
 
@@ -100,9 +106,7 @@ class SessionStorage {
     * @return {Object} Session item value. If you are using browser storage, it can return {:string}.
     */
     get(key) {
-
-        if (Config.expired())
-            this.Storage.clear();
+        Helper.expired(this.Storage);
 
         return this.Storage.getItem(key);
     }

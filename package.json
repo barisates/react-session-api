@@ -34,7 +34,7 @@
   "bugs": {
     "url": "https://github.com/barisates/react-session-api/issues"
   },
-  "homepage": "https://github.com/barisates/react-session-api#readme",
+  "homepage": "https://barisates.github.io/react-session-api/",
   "devDependencies": {
     "@babel/cli": "^7.6.0",
     "@babel/core": "^7.6.0",

@@ -1,15 +1,18 @@
 import React from 'react';
+import Session from '../src';
 import Counter from './components/Counter'
-import './App.css';
+import IncreaseButton from './components/IncreaseButton';
+import DecreaseButton from './components/DecreaseButton';
+import './css/bootstrap.min.css';
+import './css/demo.css';
 
-import Session from './Session'
-import { IncreaseButton } from './components/IncreaseButton';
-import { DecreaseButton } from './components/DecreaseButton';
+// Session.config(false, 1);
 
+export default {
+  title: 'Demo',
+};
 
-console.log(Session);
-
-function App() {
+export const Demo = () => {
 
   Session.set("counter", 0);
 
@@ -23,20 +26,18 @@ function App() {
               <Counter />
             </div>
             <div className="component-div float-right">
-            <p>IncreaseButton.js</p>
-            <IncreaseButton />
+              <p>IncreaseButton.js</p>
+              <IncreaseButton />
             </div>
             <br></br>
             <div className="component-div float-right">
-            <p>DecreaseButton.js</p>
-            <DecreaseButton />
+              <p>DecreaseButton.js</p>
+              <DecreaseButton />
             </div>
           </div>
         </div>
       </header>
     </div>
   )
+
 }
-
-
-export default App;

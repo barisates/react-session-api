@@ -1,24 +1,29 @@
 {
-  "name": "react-session-storage",
+  "name": "react-session-api",
   "version": "1.0.0",
   "description": "Store data throughout the session and move between components.",
   "main": "index.js",
   "scripts": {
     "test": "react-scripts test",
     "build": "./node_modules/.bin/babel src --out-file index.js",
-    "minify": "./node_modules/.bin/babel --minified src --out-file index.min.js "
+    "minify": "./node_modules/.bin/babel --minified src --out-file index.min.js ",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/barisates/react-session-storage.git"
+    "url": "git+https://github.com/barisates/react-session-api.git"
   },
   "keywords": [
     "react",
     "reactjs",
     "react-component",
-    "localstorage",
+    "react-session",
+    "localStorage",
+    "sessionStorage",
     "session",
-    "session-storage"
+    "session-storage",
+    "session-api"
   ],
   "author": {
     "name": "Barış Ateş",
@@ -27,14 +32,19 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/barisates/react-session-storage/issues"
+    "url": "https://github.com/barisates/react-session-api/issues"
   },
-  "homepage": "https://github.com/barisates/react-session-storage#readme",
+  "homepage": "https://github.com/barisates/react-session-api#readme",
   "devDependencies": {
     "@babel/cli": "^7.6.0",
     "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
     "@babel/preset-react": "^7.0.0",
+    "@storybook/addon-actions": "^5.2.1",
+    "@storybook/addon-links": "^5.2.1",
+    "@storybook/addons": "^5.2.1",
+    "@storybook/react": "^5.2.1",
+    "babel-loader": "^8.0.6",
     "react-scripts": "3.1.2"
   },
   "dependencies": {

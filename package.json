@@ -1,7 +1,7 @@
 {
   "name": "react-session-api",
-  "version": "1.0.0",
-  "description": "Store data throughout the session and move between components.",
+  "version": "1.0.1",
+  "description": "Store the data throughout the session and move the data between components. You can easily move state between components.",
   "main": "index.js",
   "scripts": {
     "test": "react-scripts test",

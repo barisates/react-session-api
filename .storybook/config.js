@@ -1,5 +1,4 @@
-import { configure } from '@storybook/react';
-import { addDecorator } from '@storybook/react';
+import { configure, addDecorator } from '@storybook/react';
 import { withConsole } from '@storybook/addon-console';
 
 // automatically import all files ending in *.stories.js

@@ -45,23 +45,20 @@ var Storage = function Storage() {
       enumerable: false,
       __proto__: null
     });
-
-    _SessionStorage.__proto__.setItem = function (key, value) {
-      _SessionStorage[key] = value;
-    };
-
-    _SessionStorage.__proto__.getItem = function (key) {
-      return _SessionStorage[key];
-    };
-
-    _SessionStorage.__proto__.removeItem = function (key) {
-      delete _SessionStorage[key];
-    };
-
-    _SessionStorage.__proto__.clear = function () {
-      _SessionStorage = {};
-    };
-
+    Object.setPrototypeOf(_SessionStorage, {
+      setItem: function setItem(key, value) {
+        _SessionStorage[key] = value;
+      },
+      getItem: function getItem(key) {
+        return _SessionStorage[key];
+      },
+      removeItem: function removeItem(key) {
+        delete _SessionStorage[key];
+      },
+      clear: function clear() {
+        _SessionStorage = {};
+      }
+    });
     return _SessionStorage;
   }
 };

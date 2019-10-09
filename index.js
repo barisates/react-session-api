@@ -150,8 +150,25 @@ function () {
   }, {
     key: "onSet",
     value: function onSet(callback) {
-      callback(this.items());
-      this.Callback.push(callback);
+      var filter = this.Callback.filter(function (f) {
+        return f.name === callback.name;
+      });
+
+      if (filter.length === 0) {
+        callback(this.items());
+        this.Callback.push(callback);
+      }
+    }
+    /**
+    * @param {string} callbackName Callback function key.
+    */
+
+  }, {
+    key: "unmount",
+    value: function unmount(callbackName) {
+      this.Callback = this.Callback.filter(function (f) {
+        return f.name !== callbackName;
+      });
     }
   }]);
 

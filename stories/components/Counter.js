@@ -9,9 +9,14 @@ class Counter extends Component {
     }
   }
   componentDidMount() {
-    Session.onSet((data) => {
+    const counter = (data) => {
       this.setState({ counter: data["counter"] });
-    });
+    };
+
+    Session.onSet(counter);
+  }
+  componentWillUnmount() {
+    Session.unmount("counter");
   }
   render() {
     return (

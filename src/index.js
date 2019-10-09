@@ -120,8 +120,17 @@ class SessionStorage {
   * @param {func} callback Triggered when session items set.
   */
   onSet(callback) {
-    callback(this.items())
-    this.Callback.push(callback);
+    const filter = this.Callback.filter(f => f.name === callback.name);
+    if (filter.length === 0) {
+      callback(this.items())
+      this.Callback.push(callback);
+    }
+  }
+  /**
+  * @param {string} callbackName Callback function key.
+  */
+  unmount(callbackName) {
+    this.Callback = this.Callback.filter(f => f.name !== callbackName);
   }
 }
 

@@ -22,7 +22,7 @@ With this component, you can create data that is stored throughout the session. 
 
 When the page is closed, the stored data is deleted. You can think of this data as a **global state**.
 
-You can handle data changes from the ```Session.onSet((data) => {})``` event and set the ```state``` of the components.
+You can handle data changes from the ```Session.onSet(function UniqueName(data) { })``` event and set the ```state``` of the components.
 
 ##### Features
 - Set and get data from all components. 
@@ -48,9 +48,11 @@ class Counter extends Component {
     }
   }
   componentDidMount() {
-    Session.onSet((data) => {
+    const counter = (data) => {
       this.setState({ counter: data["counter"] });
-    });
+    };
+
+    Session.onSet(counter);
   }
   render() {
     return (
@@ -116,7 +118,7 @@ Descriptions and configuration settings for component properties.
 	- ```key``` ```{string}``` session item key.
 	- ```value``` ```{Object|string}``` session item value, if you are using browser storage, it can only take ```{string}```.
 
-- **```Session.gey(key)```  Get session item.**
+- **```Session.get(key)```  Get session item.**
 	- ```key``` ```{string}``` session item key.
 
 - **```Session.remove(key)```  Remove session item by key.**
@@ -126,9 +128,12 @@ Descriptions and configuration settings for component properties.
 
 - **```Session.clear()```  Clear all items.**
 
+- **```Session.unmount(callbackName)```  Unmount callback function.**
+	- ```callbackName``` ```{string}``` callback unique name.
+
 ##### Events
 
-- **```Session.onSet((data) => { /* do things */})``` Triggered when session data changes.**
+- **```Session.onSet(function UniqueName(data) { /* do things */ })``` Triggered when session data changes.**
 
 	- ```data``` new data set.
 

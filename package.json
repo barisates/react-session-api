@@ -1,9 +1,10 @@
 {
   "name": "react-session-api",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Store the data throughout the session and move the data between components. You can easily move state between components.",
   "main": "index.js",
   "scripts": {
+    "start": "npm run storybook",
     "test": "react-scripts test",
     "build": "./node_modules/.bin/babel src --out-file index.js",
     "minify": "./node_modules/.bin/babel --minified src --out-file index.min.js ",
